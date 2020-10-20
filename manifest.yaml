@@ -1,0 +1,17 @@
+--- 
+kind: Model
+metadata: 
+    name: employee
+spec: 
+    fields: 
+    - 
+        attributes: 
+        - 
+            max: 10
+            min: 3
+            required: true
+        guiSpec: 
+        - 
+            color: red
+        name: first_name
+        type: string
