@@ -1,17 +1,119 @@
---- 
-kind: Model
-metadata: 
-    name: employee
-spec: 
-    fields: 
-    - 
-        attributes: 
-        - 
-            max: 10
-            min: 3
-            required: true
-        guiSpec: 
-        - 
-            color: red
-        name: first_name
-        type: string
+---
+kind: microservice
+metadata:
+    name: customer
+spec:
+    entities:
+        - name: customer
+          singular: customer
+          plural: customers
+          attributes:
+              - name: first_name
+                attspec:
+                  type: string # string, int, float, bool, file, image, date, time
+                  required: true # true, false
+                  length: 10
+                  default: nil # nil, now, [any static val],
+              - name: last_name
+                attspec:
+                  type: string
+                  required: true
+                  length: 10
+                  default: nil
+              - name: email
+                attspec:
+                  type: string
+                  required: false
+                  length: 10
+                  default: nil
+              - name: detail
+                attspec:
+                  # - If length = 1 and required = true then this means:
+                  # In GUI side: you have to pass all data together (wizard or same screen).
+                  #
+                  # - If length = 1 and required = false then this means:
+                  # In GUI side: you can add details later.
+                  type: entity.detail # entity.XXX
+                  required: false   
+                  length: 1 # 1 , "*" 
+              - name: address
+                attspec:
+                  type: entity.address  
+                  required: false   
+                  length: "*"
+        - name: detail
+          singular: detail
+          plural: details
+          attributes:
+              - name: detail_name
+                attspec:
+                  type: string
+                  required: true
+                  length: 10
+                  default: nil          
+        - name: country
+          singular: country
+          plural: countries
+          attributes:
+              - name: name
+                attspec:
+                  type: string
+                  required: true
+                  length: 10
+                  default: nil 
+              - name: city
+                attspec:
+                  type: entity.city  
+                  required: false   
+                  length: "*"
+        - name: city
+          singular: city
+          plural: cities
+          attributes:
+              - name: name
+                attspec:
+                  type: string
+                  required: true
+                  length: 10
+                  default: nil
+              - name: address
+                attspec:
+                  type: entity.address  
+                  required: false   
+                  length: "*"
+        - name: address
+          singular: address
+          plural: addresses
+          attributes:
+              - name: post_code
+                attspec:
+                  type: int
+                  required: true
+                  default: nil
+              - name: state
+                attspec:
+                  type: string
+                  required: true
+                  length: 3
+                  default: nil
+              - name: street
+                attspec:
+                  type: string
+                  required: true
+                  length: 3
+                  default: nil
+              - name: number
+                attspec:
+                  type: int
+                  required: true
+                  default: nil
+              - name: is_default
+                attspec:
+                  type: bool
+                  required: false
+                  default: false
+              - name: customer
+                attspec:
+                  type: entity.customer  
+                  required: false   
+                  length: "*"
