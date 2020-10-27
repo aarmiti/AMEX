@@ -19,6 +19,7 @@ type Customer struct {
 	Version string `yaml:"version"`
 
 	//Relationship attributes
+	ParentEObj Customer `json:"parentEObj"`
 	DetailEObj Detail `json:"detailEObj"`
 	AddressEList []Address `json:"addressEList"`
 }

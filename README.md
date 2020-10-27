@@ -1,5 +1,12 @@
 # AMEX
 - CRUD operations.
-- Optimistic locking mechanism
+- Dynamic finders.
+- Optimistic locking mechanism.
+- Events.
+- Metrics.
+
 
 https://dataedo.com/blog/typical-metadata-fields-stroed-by-applications
+
+
+

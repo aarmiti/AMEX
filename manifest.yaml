@@ -26,6 +26,12 @@ spec:
                   required: false
                   length: 10
                   default: nil
+              - name: parent
+                attspec:
+                  type: entity.customer
+                  required: false
+                  length: 1 # should be 1 if it from same enity (code will ignore the *)
+                  default: nil
               - name: detail
                 attspec:
                   # - If length = 1 and required = true then this means:
