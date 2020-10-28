@@ -1,0 +1,80 @@
+---
+kind: microservice
+metadata:
+    name: address_mgt 
+    storageSpace: mysql # nil, mysql, ...
+spec:
+    objects:
+        - name: country
+          singular: country
+          plural: countries
+          attributes:
+            persistent:
+              - name: c_name
+                spec:
+                  dataType: string # string, int, float, bool, file, image, date, time
+                  required: true # true, false
+                  length: 10
+                  default: nil # nil, now, [any static val],
+            relational:
+              - name: cities
+                object: city
+                type: 1:N
+            calculated:
+            external:
+        - name: city
+          singular: city
+          plural: cities
+          attributes:
+            persistent:
+              - name: name
+                spec:
+                  dataType: string
+                  required: true
+                  length: 10 
+            relational:
+              - name: detail
+                object: detail
+                type: 1:1
+        - name: detail
+          singular: detail
+          plural: details
+          attributes:
+            persistent:
+              - name: name
+                spec:
+                  dataType: string
+                  required: true
+                  length: 10
+            relational:
+              - name: parent
+                object: detail
+                type: 1:1
+        - name: task
+          singular: task
+          plural: tasks
+          attributes:
+            persistent:
+              - name: name
+                spec:
+                  dataType: string
+                  required: true
+                  length: 10 
+            relational:
+              - name: tags
+                object: tag
+                type: N:N
+        - name: tag
+          singular: tag
+          plural: tags
+          attributes:
+            persistent:
+              - name: name
+                spec:
+                  dataType: string
+                  required: true
+                  length: 10 
+            relational:
+              - name: tasks
+                object: task
+                type: N:N

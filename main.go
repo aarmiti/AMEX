@@ -3,7 +3,7 @@ package main
 import "github.com/aarmiti/AMEX/pkg/amex"
 
 func main() {
-	p := amex.NewAmex("manifest.yaml", "./output/")
-	p.SetupMicroService()
+	engine := amex.NewAmexEngine("microservice.yaml", "./output/")
+	engine.SetupMicroService()
 
 }

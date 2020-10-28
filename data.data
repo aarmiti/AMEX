@@ -1,31 +1,34 @@
 ---
 kind: microservice
 metadata:
-    name: customer
+    name: customer 
+    storageSpace: mysql # mysql, ...
 spec:
-    entities:
+    objects:
         - name: customer
           singular: customer
           plural: customers
           attributes:
+            persistent:
               - name: first_name
-                attspec:
-                  type: string # string, int, float, bool, file, image, date, time
+                attSpec:
+                  dataType: string # string, int, float, bool, file, image, date, time
                   required: true # true, false
                   length: 10
                   default: nil # nil, now, [any static val],
               - name: last_name
-                attspec:
-                  type: string
-                  required: true
-                  length: 10
-                  default: nil
-              - name: email
-                attspec:
-                  type: string
+                attSpec:
+                  dataType: string
                   required: false
                   length: 10
                   default: nil
+            calculated:
+              - name: full_name
+                attSpec:
+                  type: string
+            external:    
+
+
               - name: parent
                 attspec:
                   type: entity.customer
